@@ -7,10 +7,11 @@
     align-items: center;
 }
 .register-container{
+    margin-top: 8vh;
     z-index: 10;
     position: absolute;
     height: fit-content;
-    display: none;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;

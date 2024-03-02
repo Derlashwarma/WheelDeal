@@ -6,12 +6,23 @@
     justify-content: center;
     align-items: center;
 }
+@media(max-width: 1040px){
+    .main-container{
+        flex-direction: column;
+    }
+    .login-container{
+        width: 100%;
+    }
+    .input{
+        width: 100%;
+    }
+}
 .register-container{
     margin-top: 8vh;
     z-index: 10;
     position: absolute;
     height: fit-content;
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: center;
     align-content: center;

@@ -1,3 +1,6 @@
+<?php
+    include '../connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +41,32 @@
                     The photo is found here adn
                 </div>
             </div>
-            
+            <?php
+                $query = "
+                SELECT u.user_id, 
+                u.username, p.image, p.information 
+                FROM users AS u
+                LEFT JOIN post AS p
+                ON u.user_id=p.user_id
+                ORDER BY u.user_id;
+                ";
+                $result = mysqli_query($conn,$query);
+                while($row = mysqli_fetch_assoc($result)){
+                    echo'
+                    <div class="card-div mb-3 shadow bg-body  p-3 rounded-4">
+                        <div class="row name-div">
+                            '.$row["username"].'
+                        </div>
+                        <div class="row information-div">
+                            '. $row["information"].'
+                        </div>
+                        <div class="row image-div">
+                            <img src="' . $row['image'] . '" alt="Car Image">
+                        </div>
+                    </div>
+                ';
+                }
+            ?>
         </div>
     </div>
 </body>

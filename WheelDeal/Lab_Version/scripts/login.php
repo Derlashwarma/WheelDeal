@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($password == $stored_pass) {
             $_SESSION["username"] = $username;
             $_SESSION["user_id"] = $user["user_id"];
-            header("Location: main_page.php");
+            header("Location: ../main_page.php");
             exit();
         } else {
             $_SESSION["error"] = "Incorrect password.";

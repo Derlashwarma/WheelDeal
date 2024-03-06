@@ -19,3 +19,13 @@ body{
     box-sizing: border-box;
     padding: clamp(2px,1vw,10px);
 }
+
+.image-div img{
+    width: 100%;
+}
+
+.button-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

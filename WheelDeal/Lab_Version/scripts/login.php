@@ -8,13 +8,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($username) || empty($password)) {
         $_SESSION['error'] = "Username and password are required.";
-        header("Location: login.php");
+        header("Location: ../index.html");
         exit();
     }
 
     if (!$conn) {
         $_SESSION['error'] = "Connection failed.";
-        header("Location: login.php");
+        header("Location: ../index.html");
         exit();
     }
 
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($res->num_rows == 0) {
         $_SESSION["error"] = "No user found.";
-        header("Location: index.php");
+        header("Location: ../index.html");
         exit();
     } else {
         $user = $res->fetch_assoc();
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             $_SESSION["error"] = "Incorrect password.";
-            echo("Uh oh sumthing failed there are " . $res->num_rows . "number of rows");
+            header("Location: ../index.html");
             exit();
         }
     }

@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if($result_check_user->num_rows > 0){
             $_SESSION["error"] = "User Already Used";
             $stmt_check_user->close();
-            header("Location: index.html");
+            header("Location: ../index.html");
             echo('alert("USER ALREADY EXIST")');
             exit();
         }
@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             if($stmt_insert_query->execute()){
                 $_SESSION["success"] = "Registration Successful, you may now Log in your account";
                 echo('<script>alert("REGISTRATION SUCCESS")</script>');
-                header("Location: index.html");
+                header("Location: ../index.html");
             }
             else{
                 echo("<script>alert('REGISTRATION FAILED')</script>");

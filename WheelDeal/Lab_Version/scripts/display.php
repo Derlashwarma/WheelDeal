@@ -22,15 +22,15 @@
         }
         while($row = mysqli_fetch_assoc($result)){
             echo'
-            <div class="card-div mb-3 shadow bg-body  p-3 rounded-4">
-                <div class="row name-div">
+            <div class="card-div mb-3 shadow bg-body p-3 rounded-4">
+                <div class="row name-div p-3">
                     '.$row["username"].'
                 </div>
-                <div class="row information-div">
+                <div class="row information-div p-3">
                     '. $row["post_information"].'
                 </div>
                 <div class="row image-div">
-                    <img src="data:image/jpeg;based64'.base64_encode($row['post_image']).'" alt="Car Image">
+                    <img src="'.($row['post_image']).'" alt="Car Image">
                 </div>
             </div>
         ';

@@ -17,10 +17,10 @@
                 <div class="upload-form-container">
                     <div class="row p-2">
                         <label for="message">Upload</label>
-                        <form action="scripts/upload.php" method="POST">
+                        <form action="scripts/upload.php" method="post" enctype="multipart/form-data">
                             <div class="row message-div">
                                 <div class="col-3">
-                                    <input class="form-control form-control-lg image-input" type="file" name="image">
+                                    <input class="form-control form-control-lg image-input" accept=".jpg, .jpeg, .png" type="file" id="image" name="image">
                                 </div>
                                 <div class="col">
                                     <textarea placeholder="Car Information" name="message" id="message" class="form-control rounded-3" cols="30" rows="1"></textarea>
@@ -37,17 +37,6 @@
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
-            <div class="card-div mb-3 shadow bg-body  p-3 rounded-4">
-                <div class="row name-div">
-                    username
-                </div>
-                <div class="row information-div">
-                    This is where the information of the car is found
-                </div>
-                <div class="row image-div">
-                    The photo is found here adn
                 </div>
             </div>
             <?php

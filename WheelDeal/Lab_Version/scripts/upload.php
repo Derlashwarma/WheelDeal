@@ -1,57 +1,50 @@
 <?php
-    include 'connect.php';
-    session_start();
-    if($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-        $user_id = $_SESSION['user_id'];
-        
-        //Check if user exist in author table
-        try{
-            $query = "SELECT * FROM author WHERE user_id = ?";
-            $stment = $conn->prepare($query);
-            $stment->bind_param("i",$user_id);
-            $stment->execute();
-        }
-        catch(Exception $e){
-            echo'<script>alert("GO BACK TO PREVIOUS PAGE AN ERROR HAS OCCURED")</script>';
-            return;
-        }
+include 'connect.php';
+session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user_id = $_SESSION['user_id'];
+
+    // Check if user exists in the author table
+    $query = "SELECT * FROM author WHERE user_id = ?";
+    $stment = $conn->prepare($query);
+    $stment->bind_param("i", $user_id);
+    $stment->execute();
+    $result = $stment->get_result();
+
+    if ($result->num_rows == 0) {
+        $insert_query = "INSERT INTO author(user_id) VALUES(?)";
+        $insert_stment = $conn->prepare($insert_query);
+        $insert_stment->bind_param("i", $user_id);
+        $insert_stment->execute();
+        $insert_stment->close();
+    
+        $stment->execute();
         $result = $stment->get_result();
-
-        if($result->num_rows == 0){
-            $insert_query = "INSERT INTO author(user_id) VALUES(?)";
-            $insert_stment = $conn->prepare($insert_query);
-            $insert_stment->bind_param("i",$user_id);
-            try{
-                $insert_stment->execute();
-            }
-            catch(Exception $e){
-                echo'<script>alert("AN ERROR OCCURED IN INSERTING AUTHOR")</script>';
-            }
-            $insert_stment->close();
-        }
-        
-        //File Upload to Local Storage
-        $row = $result->fetch_assoc();
-        $author_id = $row['author_id'];
-        $post_info = $_POST['message'];
-        $is_auction = isset($_POST['is_auction'])?1:0;
-
-        if(isset($_FILES["image"])) {
-            $file_name = $_FILES["image"]['name'];
-            echo 'File name: ' . $file_name;
-        } else {
-            echo '$_FILES["image"] is not set';
-        }
-        $file_name = $_FILES["image"]['name'];
-        $tempname = $_FILES["image"]["tmp_name"];
-        $folder = "./image/" . $file_name;
-        if(move_uploaded_file($tempname, $folder)){
-            echo'success';
-        }
-        else{
-            echo'failed';
-        }
-        //header('Location: ../main_page.php');
     }
+    $row = $result->fetch_assoc();
+    $author_id = $row['author_id'];
+
+    // File Upload to Local Storage
+    $post_info = $_POST['message'];
+    $is_auction = isset($_POST['is_auction']) ? 1 : 0;
+
+    if (isset($_FILES["image"]["name"])) {
+        $image_name = $_FILES["image"]["name"];
+        $image_tmp = $_FILES["image"]["tmp_name"];
+        $address = "../image/" . $image_name;
+        move_uploaded_file($image_tmp, $address);
+
+        $store_query = "INSERT INTO post(author_id, post_image, post_information, is_auction)
+                        VALUES(?,?,?,?)";
+        $store_stment = $conn->prepare($store_query);
+        $store_stment->bind_param("isss", $author_id, $address, $post_info, $is_auction);
+        if ($store_stment->execute()) {
+            header('Location: ../main_page.php');
+        } else {
+            echo("<script>alert('UPLOAD FAILED :((')</script>");
+        }
+    } else {
+        echo("UH OH");
+    }
+}
 ?>

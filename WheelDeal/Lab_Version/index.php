@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style/login.css">
-    <link rel="stylesheet" href="style/register.css">
-    <link rel="stylesheet" href="style/footer.css">
-    <link rel="stylesheet" href="style/about_us.css">
-    <script src="scripts/validate.js"></script>
+    <link rel="stylesheet" href="css/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/about_us.css">
+    <script src="js/validate.js"></script>
     <title>WheelDeal Login</title>
 </head>
 <body>
     <div class="main-container container">
         <div class="login-container">
             <div class="input shadow-lg p-3 mb-5 bg-body rounded">    
-                <form action="scripts/login.php" method="post">
+                <form action="includes/login.php" method="post">
                     <div class="mt-2">
                         <div class="form-floating">
                             <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
@@ -44,7 +44,7 @@
         </div>
         <div class="register-container shadow p-3 rounded" id="register_page">
             <div class="registration-form mt-5">
-                <form action="scripts/register.php" method="POST" onsubmit="return validateRegistration(event)">
+                <form action="includes/register.php" method="POST" onsubmit="return validateRegistration(event)">
                     <div class="register-input-container input shadow p-3 mb-5 bg-body rounded">
                         <div class="mb-3 d-grid gap-2">
                             <div class="close-btn-container"><button id="close_regis" class="btn-close"></button></div>
@@ -56,6 +56,13 @@
                                 <input type="text" class="form-control" name="regis_lastname" id="regis_last_name" placeholder="Last name" required>
                                 <label for="regis_last_name" class="form-label">Last name</label>
                             </div>
+                            <div class="form-floating mb-3">
+                            <select class="form-select" name="regis_gender" aria-label="Default select example">
+                                <option selected>Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            </div>
                             <div class="form-floating">
                                 <input type="email" class="form-control" name="regis_email" id="regis_email" placeholder="Email" required>
                                 <label for="regis_email" class="form-label">Email</label>
@@ -63,6 +70,14 @@
                             <div class="form-floating">
                                 <input type="text" class="form-control" name="regis_username" id="regis_user_name" placeholder="Username" required>
                                 <label for="regis_user_name" class="form-label">Username</label>
+                            </div>
+                            <div class="form-floating">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="is_admin" type="checkbox" value="1" id="flexCheckIndeterminate">
+                                    <label class="form-check-label" for="flexCheckIndeterminate">
+                                        Admin
+                                    </label>
+                                </div>
                             </div>
                             <div class="password-container form-floating">
                                 <input type="password" class="form-control" name="regis_pass" id="regis_pass" placeholder="New password" required>
@@ -100,7 +115,7 @@
             </div>
         </div>
     </div>
-    <script src="scripts/script.js"></script>
+    <script src="js/script.js"></script>
     <footer class="footer mt-5">
         <div class="footer-container p-2">
             Lauron

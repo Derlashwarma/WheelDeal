@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connect.php';
+include '../connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -8,17 +8,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($username) || empty($password)) {
         $_SESSION['error'] = "Username and password are required.";
-        header("Location: ../index.html");
+        header("Location: login.php");
         exit();
     }
 
     if (!$conn) {
         $_SESSION['error'] = "Connection failed.";
-        header("Location: ../index.html");
+        header("Location: login.php");
         exit();
     }
 
-    $check_username = "SELECT * FROM users WHERE username=?";
+    $check_username = "SELECT * FROM tbluseraccount WHERE username=?";
     $stmt_check_username = $conn->prepare($check_username);
     $stmt_check_username->bind_param("s", $username);
     $stmt_check_username->execute();
@@ -26,7 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($res->num_rows == 0) {
         $_SESSION["error"] = "No user found.";
-        header("Location: ../index.html");
+        echo("NO USERS FOUND");
+        //header("Location: index.php");
         exit();
     } else {
         $user = $res->fetch_assoc();
@@ -34,12 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($password == $stored_pass) {
             $_SESSION["username"] = $username;
-            $_SESSION["user_id"] = $user["user_id"];
-            header("Location: ../main_page.php");
+            $_SESSION["userid"] = $user["acctid"];
+            echo("<br>LOGIN SUCCESSS");
+            //header("Location: main_page.php");
             exit();
         } else {
             $_SESSION["error"] = "Incorrect password.";
-            header("Location: ../index.html");
+            echo("Uh oh sumthing failed there are " . $res->num_rows . "number of rows");
             exit();
         }
     }

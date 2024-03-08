@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($res->num_rows == 0) {
         $_SESSION["error"] = "No user found.";
         echo("NO USERS FOUND");
-        //header("Location: index.php");
+        header("Location: ../index.php");
         exit();
     } else {
         $user = $res->fetch_assoc();
@@ -35,9 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($password == $stored_pass) {
             $_SESSION["username"] = $username;
-            $_SESSION["userid"] = $user["acctid"];
-            echo("<br>LOGIN SUCCESSS");
-            //header("Location: main_page.php");
+            $_SESSION["user_id"] = $user["acctid"];
+            header("Location: ../main_page.php");
             exit();
         } else {
             $_SESSION["error"] = "Incorrect password.";

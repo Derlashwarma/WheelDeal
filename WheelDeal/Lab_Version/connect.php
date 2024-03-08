@@ -7,7 +7,4 @@ $database_name = "dblauronf2";
 
 $conn = new mysqli($server_name,$dbusername,$dbpassword,$database_name);
 
-if($conn){
-    echo"Connection successful";
-}
 ?>

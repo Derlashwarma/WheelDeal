@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include '../connect.php';
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_SESSION['user_id'];
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_FILES["image"]["name"])) {
         $image_name = $_FILES["image"]["name"];
         $image_tmp = $_FILES["image"]["tmp_name"];
-        $address = "../image/" . $image_name;
+        $address = "../images/" . $image_name;
         move_uploaded_file($image_tmp, $address);
 
         $store_query = "INSERT INTO post(author_id, post_image, post_information, is_auction)

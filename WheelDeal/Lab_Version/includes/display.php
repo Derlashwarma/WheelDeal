@@ -1,25 +1,25 @@
 <?php
-    $query = "
-    SELECT
-        p.post_id, p.author_id, p.post_image,p.post_information,
-        a.author_id,a.user_id,u.username,u.user_id
-    FROM users as u
-    RIGHT JOIN author AS a
-    ON u.user_id = a.user_id
-    RIGHT JOIN post AS p
-    ON a.author_id = p.author_id
-    ORDER BY p.post_id;
-        ";
+    $query = "SELECT 
+            acc.acctid, acc.username, a.author_id, a.user_id,
+            p.post_id, p.author_id, p.post_image, p.post_information,
+            p.is_auction, p.post_likes
+        FROM tbluseraccount AS acc
+        RIGHT JOIN author AS a
+        ON acc.acctid = a.user_id
+        RIGHT JOIN post AS p
+        ON a.author_id = p.author_id
+        ORDER BY p.post_id;
+    ";
         try{
             $result = mysqli_query($conn,$query);
         }
         catch(Exception $e){
             echo'<div style="width: 100%; text-align: center; color:red;">cannot load, an error has occured</div>';
-            return;
         }
         if(mysqli_num_rows($result) == 0){
-            echo'<div id="error" style="width: 100%; text-align: center; color:red;">There are '. $result->num_rows .' uploads </div>';
+            echo'<div id="error" style="width: 100%; text-align: center; color:red;">There are no uploads </div>';
         }
+
         while($row = mysqli_fetch_assoc($result)){
             echo'
             <div class="card-div mb-3 shadow bg-body p-3 rounded-4">

@@ -1,13 +1,16 @@
 <?php
-    include '../connect.php';
+    include 'connect.php';
+    session_start();
+    
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style/main_page.css">
+    <link rel="stylesheet" href="css/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main_page.css">
     <title>WHEEL DEAL</title>
 </head>
 <body>
@@ -17,7 +20,7 @@
                 <div class="upload-form-container">
                     <div class="row p-2">
                         <label for="message">Upload</label>
-                        <form action="scripts/upload.php" method="post" enctype="multipart/form-data">
+                        <form action="includes/upload.php" method="post" enctype="multipart/form-data">
                             <div class="row message-div">
                                 <div class="col-3">
                                     <input class="form-control form-control-lg image-input" accept=".jpg, .jpeg, .png" type="file" id="image" name="image">
@@ -40,7 +43,7 @@
                 </div>
             </div>
             <?php
-            include 'scripts/display.php'
+            include 'includes/display.php'
             ?>
         </div>
     </div>

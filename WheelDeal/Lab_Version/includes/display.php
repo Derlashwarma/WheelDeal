@@ -31,8 +31,9 @@
                 </div>
                 <div class="row image-div">
                     <img src="'.($row['post_image']).'" alt="Car Image">
-                </div>
-            </div>
+                </div>';
+            include 'likes.php';
+            echo'</div>
         ';
         }
 ?>

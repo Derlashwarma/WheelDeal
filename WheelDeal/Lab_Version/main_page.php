@@ -23,18 +23,16 @@
                         <label for="message">Upload</label>
                         <form action="includes/upload.php" method="post" enctype="multipart/form-data">
                             <div class="row message-div">
-                                <div class="col-3">
+                                <div class="col-3 form-group">
                                     <input class="form-control form-control-lg image-input" accept=".jpg, .jpeg, .png" type="file" id="image" name="image">
                                 </div>
                                 <div class="col">
                                     <textarea placeholder="Car Information" name="message" id="message" class="form-control rounded-3" cols="30" rows="1"></textarea>
                                 </div>
                             </div>
-                            <div class="form-check">
+                            <div class="form-check m-2">
                                 <input class="form-check-input" type="checkbox" value="true" id="flexCheckIndeterminate" name="is_auction">
-                                <label class="form-check-label" for="flexCheckIndeterminate">
-                                    Is Auction?
-                                </label>
+                                <label class="form-check-label" for="flexCheckIndeterminate">Is Auction?</label>
                             </div>
                             <div class="button-div mt-3">
                                 <button type="submit" class="btn btn-primary">Upload</button>

@@ -1,26 +1,31 @@
 <?php
-include '../connect.php';
 session_start();
+include '../connect.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_SESSION['user_id'];
+
+    $username = $_GET["username"];
+    $acctid = $_GET["acctid"];
+
 
     // Check if user exists in the author table
-    $query = "SELECT * FROM author WHERE user_id = ?";
+    $query = "SELECT * FROM author WHERE acctid = ?";
     $stment = $conn->prepare($query);
-    $stment->bind_param("i", $user_id);
+    $stment->bind_param("i", $acctid);
     $stment->execute();
     $result = $stment->get_result();
 
     if ($result->num_rows == 0) {
-        $insert_query = "INSERT INTO author(user_id) VALUES(?)";
+        $insert_query = "INSERT INTO author(acctid) VALUES(?)";
         $insert_stment = $conn->prepare($insert_query);
-        $insert_stment->bind_param("i", $user_id);
+        $insert_stment->bind_param("i", $acctid);
         $insert_stment->execute();
         $insert_stment->close();
     
         $stment->execute();
         $result = $stment->get_result();
     }
+    
     $row = $result->fetch_assoc();
     $author_id = $row['author_id'];
 
@@ -39,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $store_stment = $conn->prepare($store_query);
         $store_stment->bind_param("isss", $author_id, $address, $post_info, $is_auction);
         if ($store_stment->execute()) {
-            header('Location: ../main_page.php');
+            header('Location: ../main_page.php?username='.urlencode($username).'&acctid='.urlencode($acctid));
         } else {
             echo("<script>alert('UPLOAD FAILED :((')</script>");
         }

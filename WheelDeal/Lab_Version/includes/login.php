@@ -20,16 +20,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["error"] = "No user found.";
     } else {
         $user = $res->fetch_assoc();
-        $stored_pass = $user['password'];
-
-        if ($password == $stored_pass) {
+        $stored_pass = $user['password']; 
+        if (password_verify($password,$stored_pass)) {
             $_SESSION["username"] = $username;
-            $_SESSION["user_id"] = $user["acctid"];
-            header("Location: ../main_page.php");
+            $_SESSION["acctid"] = $user["acctid"];
+            header("Location: ../main_page.php?username=".urlencode($_SESSION["username"])."&acctid=".urlencode($_SESSION["acctid"]));
             exit();
         } else {
             $_SESSION["error"] = "Incorrect password.";
-            echo("Uh oh sumthing failed there are " . $res->num_rows . "number of rows");
+            echo("<script>alert('INCORRECT PASSWORD')</script>");
             exit();
         }
     }

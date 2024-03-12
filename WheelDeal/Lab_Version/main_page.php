@@ -1,6 +1,8 @@
 <?php
     include 'connect.php';
     session_start();
+    $username = $_GET["username"];
+    $acctid = $_GET["acctid"];
     
 ?>
 
@@ -21,7 +23,7 @@
                 <div class="upload-form-container">
                     <div class="row p-2">
                         <label for="message">Upload</label>
-                        <form action="includes/upload.php" method="post" enctype="multipart/form-data">
+                        <form method="post" action="includes/upload.php?username=<?php echo htmlspecialchars(urlencode($username)); ?>&acctid=<?php echo htmlspecialchars(urlencode($acctid)); ?>" enctype="multipart/form-data">
                             <div class="row message-div">
                                 <div class="col-3 form-group">
                                     <input class="form-control form-control-lg image-input" accept=".jpg, .jpeg, .png" type="file" id="image" name="image">
@@ -42,7 +44,9 @@
                 </div>
             </div>
             <?php
-            include 'includes/display.php'
+            if(isset($_GET['username']) && isset($_GET['acctid'])) {
+                include 'includes/display.php';
+            }
             ?>
         </div>
     </div>

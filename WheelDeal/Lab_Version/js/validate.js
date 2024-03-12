@@ -15,17 +15,19 @@ addEventListener('DOMContentLoaded',function(){
     document.getElementById("login").addEventListener('click',function(event){
         var username = document.getElementById("username");
         var password = document.getElementById("password");
-        var error_username = document.getElementById("error_username");
-        var error_password = document.getElementById("error_password");
 
         if(username.value === ""){
-            error_username.innerHTML = "*Username Must be Filled";
+            username.style.borderColor = "red";
             event.preventDefault();
         }
         if(password.value === ""){
-            error_password.innerHTML = "*Password Must be Filled";
+            password.style.borderColor = "red";
             event.preventDefault();
         }
+        else{
+            password.style.borderColor = "green";
+            username.style.borderColor = "green";
+        }
     });
-
 });
+

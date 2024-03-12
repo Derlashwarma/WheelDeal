@@ -1,6 +1,11 @@
 <?php
     include 'connect.php';
-    include 'includes/login.php';
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"]) && isset($_POST["password"])) {
+        include 'includes/login.php';
+    }
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["regis_username"]) && isset($_POST["regis_pass"])) {
+        include 'includes/register.php';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,17 +26,11 @@
             <div class="input shadow-lg p-3 mb-5 bg-body rounded">    
                 <form method="post">
                     <div class="mt-2">
-                        <div class="form-floating">
-                            <p class="text-danger" id="error_username"></p>
-                        </div>
-                        <div class="form-floating">
+                        <div class="form-floating username">
                             <input type="text" class="form-control" name="username" id="username" placeholder="Username" >
                             <label for="username" class="form-label">Username</label>
                         </div >
-                        <div class="form-floating">
-                            <p class="text-danger" id="error_password"></p>
-                        </div>
-                        <div class="password-container form-floating">
+                        <div class="password-container form-floating password">
                                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" >
                                 <button class="mt-2 m-2 btn" id="show_pass">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -54,7 +53,7 @@
         </div>
         <div class="register-container shadow p-3 rounded" id="register_page">
             <div class="registration-form mt-5">
-                <form action="includes/register.php" method="POST" onsubmit="return validateRegistration(event)">
+                <form method="POST" onsubmit="return validateRegistration(event)">
                     <div class="register-input-container input shadow p-3 mb-5 bg-body rounded">
                         <div class="mb-3 d-grid gap-2">
                             <div class="close-btn-container"><button id="close_regis" class="btn-close"></button></div>

@@ -2,8 +2,16 @@
     include 'connect.php';
     session_start();
     $username = $_GET["username"];
-    $acctid = $_GET["acctid"];
     
+    $checkIfAdminQuery = "SELECT * FROM tbluseraccount WHERE username = ? AND is_admin = 1";
+    $checkIfAdmin = $conn->prepare($checkIfAdminQuery);
+    $checkIfAdmin->bind_param("s",$username);
+    $checkIfAdmin->execute();
+    $result = $checkIfAdmin->get_result()->fetch_assoc();
+    $isAdmin = null;
+    if($result){
+        $isAdmin = $result["is_admin"];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +25,25 @@
     <title>WHEEL DEAL</title>
 </head>
 <body>
+    <div class="nav shadow floating-nav rounded-4 navbar navbar-expand-lg navbar-light bg-light mb-3">
+        <div class="container element-container">
+            <div class="name-container p-2 text-center">
+                <h1>
+                    <?php
+                        echo($username);
+                    ?>
+                </h1>
+            </div>
+            <div class="nav-btn">
+                <div class="nav-item">
+                    <a href="" class="nav-link btn">ABOUT US</a>
+                </div>
+                <div class="nav-item">
+                    <a href="" class="nav-link btn">CONTACT US</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="main-page-container container">
         <div class="news-feed-container row">
             <div class="upload-container mb-3 shadow bg-body  p-3 rounded-4">

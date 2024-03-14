@@ -13,22 +13,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST["regis_username"];
         $password = $_POST["regis_pass"];
 
-        $check_email = "SELECT * FROM tbluseraccount WHERE username=? AND emailadd=?" ;
+        $check_email = "SELECT * FROM tbluseraccount WHERE username=? OR emailadd=?" ;
         $stmt_check_email = $conn->prepare($check_email);
         $stmt_check_email->bind_param("ss",$username,$email);
         $stmt_check_email->execute();
         $result_check_email = $stmt_check_email->get_result();
 
-        if($result_check_email->num_rows >= 1){
+        if($result_check_email->num_rows > 0){
             $_SESSION["error"] = "User Email Already Used";
             $stmt_check_email->close();
-            echo('<script>
-                document.addEventListener("DOMContentLoaded",function(event){
-                    event.preventDefault();
-                    alert("USERNAME OR EMAIL ALREADY USED");
-                    return false;
-                })
-            </script>');
+            header("Location: ../index.php?registration=failed");
             return;
         }
         else{
@@ -51,8 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             //execute both
             if($stmt_insert_query_profile->execute() && $stmt_insert_query_account->execute()){
                 $_SESSION["success"] = "Registration Successful, you may now Log in your account";
-                echo("<script>alert('REGISTRATION SUCCESS')</script>"); 
-                header("Location: ../index.php");
+                header("Location: ../index.php?registration=success");
             }
             else{
                 echo("<script>alert('REGISTRATION FAILED')</script>");

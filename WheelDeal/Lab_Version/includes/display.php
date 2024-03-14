@@ -14,7 +14,7 @@
     ";
         $username = $_GET["username"];
         $acctid = $_GET["acctid"];
-        
+
         try{
             $result = mysqli_query($conn,$query);
         }
@@ -27,6 +27,9 @@
 
         while($row = mysqli_fetch_assoc($result)){
             echo'<div class="card-div mb-3 shadow bg-body p-3 rounded-4">';
+            if($isAdmin){
+                echo("I have the powerrrrr");
+            }
             echo'    <div class="row name-div p-3">
                     '.$row["username"].'
                 </div>

@@ -28,8 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             $_SESSION["error"] = "Incorrect password.";
-            echo("<script>alert('INCORRECT PASSWORD')</script>");
-            exit();
+            header("Location: ../index.php?status=failed");
         }
     }
 }

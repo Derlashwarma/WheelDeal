@@ -29,3 +29,34 @@ body{
     justify-content: center;
 }
 
+.floating-nav{
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+    width: min(400px,18vw);
+}
+.element-container{
+    display: flex;
+    flex-direction: column;
+}
+.nav-btn{
+    display: flex;
+    flex-direction: column;
+}
+@media(max-width: 1130px){
+    .floating-nav{
+        position:relative; margin: 0 auto;
+        left: auto;
+        right: auto; 
+        width: max(400px,58vw);
+    }
+    .nav-btn{
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+    .nav-btn a{
+        background-color: rgb(250, 207, 207);
+        width: 120%;
+    }
+}

@@ -31,15 +31,16 @@
                             <label for="username" class="form-label">Username</label>
                         </div >
                         <div class="password-container form-floating password">
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" >
-                                <button class="mt-2 m-2 btn" id="show_pass">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-                                    </svg>                          
-                                </button>
-                                <label for="password" class="form-label">Password</label>
-                            </div>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" >
+                            <button class="mt-2 m-2 btn" id="show_pass">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                                </svg>                          
+                            </button>
+                            <label for="password" class="form-label">Password</label>
+                        </div>
+                        <p id="error_login" class="text-danger"></p>
                     </div>
                     <div class="buttons d-grid pb-1 mb-2">
                         <button id="login" type="submit" class="btn btn-dark">Log in</button>
@@ -58,26 +59,26 @@
                         <div class="mb-3 d-grid gap-2">
                             <div class="close-btn-container"><button id="close_regis" class="btn-close"></button></div>
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="regis_firstname" id="regis_first_name" placeholder="First name" required>
+                                <input type="text" class="form-control" name="regis_firstname" id="regis_first_name" placeholder="First name" >
                                 <label for="regis_first_name" class="form-label">First name</label>
                             </div>
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="regis_lastname" id="regis_last_name" placeholder="Last name" required>
+                                <input type="text" class="form-control" name="regis_lastname" id="regis_last_name" placeholder="Last name" >
                                 <label for="regis_last_name" class="form-label">Last name</label>
                             </div>
                             <div class="form-floating mb-3">
                             <select class="form-select" name="regis_gender" aria-label="Default select example">
-                                <option selected>Gender</option>
+                                <option value ="" selected>Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                             </div>
                             <div class="form-floating">
-                                <input type="email" class="form-control" name="regis_email" id="regis_email" placeholder="Email" required>
+                                <input type="email" class="form-control" name="regis_email" id="regis_email" placeholder="Email" >
                                 <label for="regis_email" class="form-label">Email</label>
                             </div>
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="regis_username" id="regis_user_name" placeholder="Username" required>
+                                <input type="text" class="form-control" name="regis_username" id="regis_user_name" placeholder="Username" >
                                 <label for="regis_user_name" class="form-label">Username</label>
                             </div>
                             <div class="form-floating">
@@ -89,7 +90,7 @@
                                 </div>
                             </div>
                             <div class="password-container form-floating">
-                                <input type="password" class="form-control" name="regis_pass" id="regis_pass" placeholder="New password" required>
+                                <input type="password" class="form-control" name="regis_pass" id="regis_pass" placeholder="New password" >
                                 <button class="mt-2 btn" id="show_regis_pass">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
@@ -99,7 +100,7 @@
                                 <label for="regis_pass" class="form-label">New password</label>
                             </div>
                             <div class="password-container form-floating">
-                                <input type="password" class="form-control" name="regis_pass_conf" id="regis_pass_conf" placeholder="Confirm new password" required>
+                                <input type="password" class="form-control" name="regis_pass_conf" id="regis_pass_conf" placeholder="Confirm new password" >
                                 <button class="mt-2 btn" id="show_regis_pass">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
@@ -117,12 +118,14 @@
                 </form>
             </div>
         </div>
+        <!--
         <div class="about-us-container p-2 container shadow-lg p-3 mb-5 bg-white rounded">
             <div class="about-us-btn-container">
                 <div class="row p-2"><button class="btn btn-danger accent fs-3">ABOUT US</button></div>
                 <div class="row p-2"><button class="btn btn-danger accent fs-3">CONTACT US</button></div>
             </div>
         </div>
+        -->
     </div>
     <script src="js/script.js"></script>
     <footer class="footer mt-5">

@@ -10,7 +10,7 @@ body{
 }
 
 .main-page-container{
-    width: clamp(400px, 60%, 900px);
+    width: clamp(400px, 60%, 700px);
 }
 
 #message{
@@ -59,4 +59,9 @@ body{
         background-color: rgb(250, 207, 207);
         width: 120%;
     }
+}
+.delete-btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }

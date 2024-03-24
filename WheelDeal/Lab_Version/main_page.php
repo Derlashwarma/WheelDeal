@@ -34,14 +34,6 @@
                     ?>
                 </h1>
             </div>
-            <div class="nav-btn">
-                <div class="nav-item">
-                    <a href="" class="nav-link btn">ABOUT US</a>
-                </div>
-                <div class="nav-item">
-                    <a href="" class="nav-link btn">CONTACT US</a>
-                </div>
-            </div>
         </div>
     </div>
     <div class="main-page-container container">

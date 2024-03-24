@@ -27,8 +27,11 @@
 
         while($row = mysqli_fetch_assoc($result)){
             echo'<div class="card-div mb-3 shadow bg-body p-3 rounded-4">';
-            if($isAdmin){
-                echo("I have the powerrrrr");
+            if($isAdmin || $acctid == $row['author_id']){
+                echo '
+                <div class="delete-btn-container">
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>';
             }
             echo'    <div class="row name-div p-3">
                     '.$row["username"].'

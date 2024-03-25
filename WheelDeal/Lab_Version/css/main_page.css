@@ -65,3 +65,18 @@ body{
     display: flex;
     justify-content: flex-end;
 }
+
+.delete-post{
+    width: 100%;
+    display: none;
+}
+
+.confirm-message{
+    text-align: center;
+}
+.btn-no{
+    width: 30%;
+}
+.btn-yes{
+    width: 30%;
+}

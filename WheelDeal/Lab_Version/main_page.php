@@ -1,5 +1,5 @@
 <?php
-    include 'connect.php';
+    require 'connect.php';
     session_start();
     $username = $_GET["username"];
     
@@ -42,7 +42,7 @@
                 <div class="upload-form-container">
                     <div class="row p-2">
                         <label for="message">Upload</label>
-                        <form method="post" action="includes/upload.php?username=<?php echo htmlspecialchars(urlencode($username)); ?>&acctid=<?php echo htmlspecialchars(urlencode($acctid)); ?>" enctype="multipart/form-data">
+                        <form method="post" id="uploadForm" action="includes/upload.php" enctype="multipart/form-data">
                             <div class="row message-div">
                                 <div class="col-3 form-group">
                                     <input class="form-control form-control-lg image-input" accept=".jpg, .jpeg, .png" type="file" id="image" name="image">
@@ -56,6 +56,7 @@
                                 <label class="form-check-label" for="flexCheckIndeterminate">Is Auction?</label>
                             </div>
                             <div class="button-div mt-3">
+                                <!-- <input type="submit" placeholder="Upload" class="btn btn-primary" /> -->
                                 <button type="submit" class="btn btn-primary">Upload</button>
                             </div>
                         </form>
@@ -69,5 +70,13 @@
             ?>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        var username = "<?php echo htmlspecialchars(urlencode($username)); ?>";
+        var acctid = "<?php echo htmlspecialchars(urlencode($acctid)); ?>";
+        var form = document.getElementById("uploadForm");
+        form.action = "includes/upload.php?username=" + username + "&acctid=" + acctid;
+    });
+</script>
 </body>
 </html>

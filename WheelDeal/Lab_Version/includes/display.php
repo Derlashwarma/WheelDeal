@@ -10,7 +10,7 @@
         RIGHT JOIN post AS p
         ON a.author_id = p.author_id
         WHERE p.is_active = 1
-        ORDER BY p.post_id;
+        ORDER BY p.post_id DESC;
     ";
         $username = $_GET["username"];
         $acctid = $_GET["acctid"];

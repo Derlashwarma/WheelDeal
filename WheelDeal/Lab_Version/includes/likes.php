@@ -1,30 +1,53 @@
-<div>
-    <?php
-        //echo($_SESSION['username']);
-        //echo($row['username']);
-        //echo($row['post_id']);
-    ?>
-    <div class="like-count p-2">
-        <?php
-        echo($row['post_likes']);
-        ?>
-        Likes
-    </div>
-    <form method="post">
-        <input type="hidden" name="username" value="<?php echo $row['username']; ?>">
-        <button type="submit" class="like-btn pt-2 pb-2 rounded btn btn-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-            </svg>
-        </button>
-    </form>
-</div>
-
 <?php
-    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username'])){
+    require '../connect.php';
+    $post_id = $_GET['post_id'];
+    $acctid = $_GET['acctid'];
 
-        echo('YOU LIKED THE '.$row['username'].'s post');
-
+    $check_like_exist_query = "SELECT l.isliked, l.acctid, l.post_id, p.author_id, p.post_id 
+                                FROM likes AS l
+                                INNER JOIN post AS p
+                                ON l.post_id = p.post_id
+                                WHERE l.post_id = ? 
+                                AND l.acctid = ?
+                                AND l.isliked = 1";
+    $check_like_query = $conn->prepare($check_like_exist_query);
+    $check_like_query->bind_param('ii',$post_id,$acctid);
+    if($check_like_query->execute()){
+        
     }
-
+    $check_like_query->store_result();
+    if($check_like_query->num_rows() > 0){
+        //run delete query
+        echo'Delete Query';
+        $remove_like_query = "UPDATE likes SET isliked = 0 WHERE post_id = ? AND acctid = ?";
+        $remove_query = $conn->prepare($remove_like_query);
+        $remove_query->bind_param('ii',$post_id,$acctid);
+        $remove_query->execute();
+        $decrement_query = "UPDATE post 
+                                SET post_likes = post_likes - 1
+                                WHERE post_id = ?";
+            $run_decrement = $conn->prepare($decrement_query);
+            $run_decrement->bind_param('i',$post_id);
+            if($run_decrement->execute()){
+                header("Location: ../main_page.php?username=$username&acctid=$acctid");
+            }
+    }
+    else{
+        $insert_likes_query = "INSERT INTO likes(post_id,acctid,isliked)
+                                VALUES (?,?,?)";
+        $insert_like = $conn->prepare($insert_likes_query);
+        $isliked = 1;
+        $insert_like->bind_param('iii',$post_id,$acctid,$isliked);
+        if($insert_like->execute()){
+            $increment_query = "UPDATE post 
+                                SET post_likes = post_likes + 1
+                                WHERE post_id = ?";
+            $run_increment = $conn->prepare($increment_query);
+            $run_increment->bind_param('i',$post_id);
+            if($run_increment->execute()){
+                header("Location: ../main_page.php?username=$username&acctid=$acctid");
+            }
+        }
+        echo'Add Query';
+    }
 ?>

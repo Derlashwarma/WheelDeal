@@ -15,5 +15,4 @@
     if($update_query->execute()){
         header("Location: ../main_page.php?username=$username&acctid=$acctid");
     }
-    echo('I will delete post with post id:'.$post_id_to_delete);
 ?>

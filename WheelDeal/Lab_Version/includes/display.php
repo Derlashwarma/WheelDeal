@@ -57,7 +57,7 @@
                     </script>
                 ');
             echo'<div class="card-div mb-3 shadow bg-body p-3 rounded-4">';
-            if($isAdmin || $acctid == $row['author_id']){
+            if($isAdmin || $acctid == $row['acctid']){
                 echo '
                 <div class="delete-btn-container">
                     <button type="button" id="delete-post-'.$row['post_id'].'" class="position-absolute btn-close" aria-label="Close"></button>

@@ -2,6 +2,7 @@
     require '../connect.php';
     $post_id = $_GET['post_id'];
     $acctid = $_GET['acctid'];
+    $username = $_GET['username'];
 
     $check_like_exist_query = "SELECT l.isliked, l.acctid, l.post_id, p.author_id, p.post_id 
                                 FROM likes AS l
@@ -13,7 +14,7 @@
     $check_like_query = $conn->prepare($check_like_exist_query);
     $check_like_query->bind_param('ii',$post_id,$acctid);
     if($check_like_query->execute()){
-        
+        header("Location: ../main_page.php?username=$username&acctid=$acctid");
     }
     $check_like_query->store_result();
     if($check_like_query->num_rows() > 0){

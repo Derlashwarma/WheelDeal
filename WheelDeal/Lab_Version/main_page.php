@@ -45,7 +45,7 @@
                         <form method="post" id="uploadForm" action="includes/upload.php" enctype="multipart/form-data">
                             <div class="row message-div">
                                 <div class="col-3 form-group">
-                                    <input class="form-control form-control-lg image-input" accept=".jpg, .jpeg, .png" type="file" id="image" name="image">
+                                    <input class="form-control form-control-lg image-input" accept=".jpg, .jpeg, .png" type="file" id="image" name="image" required>
                                 </div>
                                 <div class="col">
                                     <textarea placeholder="Car Information" name="message" id="message" class="form-control rounded-3" cols="30" rows="1"></textarea>

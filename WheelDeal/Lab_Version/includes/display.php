@@ -50,10 +50,8 @@
                                 
                         document.getElementById("no-'.$row['post_id'].'").addEventListener("click", function(){
                             document.getElementById("post-'.$row['post_id'].'").style.display="none";
-                        })
-                        
-                        })
-
+                        })  
+                    })
                     </script>
                 ');
             echo'<div class="card-div mb-3 shadow bg-body p-3 rounded-4">';
@@ -76,13 +74,13 @@
                     </script>
                 ');
             }
-            echo'    <div class="row name-div p-3">
-                    '.$row["username"].'
-                </div>
+            echo'    <div class="row name-div">
+                    <p class="h5">'.$row["username"].'</p>
+                    </div>
                 <div class="row information-div p-3">
                     '. $row["post_information"].'
                 </div>
-                <div class="row image-div">
+                <div class=" image-div">
                     <img src="'.($row['post_image']).'" alt="Car Image">
                 </div>';
             echo '

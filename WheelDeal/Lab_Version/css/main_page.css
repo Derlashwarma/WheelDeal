@@ -34,6 +34,8 @@ body{
     z-index: 10;
     background-color: white;
     width: min(400px,18vw);
+    display: flex;
+    flex-direction: column;
 }
 .element-container{
     display: flex;
@@ -49,6 +51,7 @@ body{
         left: auto;
         right: auto; 
         width: max(400px,58vw);
+        flex-direction: row;
     }
     .nav-btn{
         flex-direction: row;
@@ -58,6 +61,13 @@ body{
     .nav-btn a{
         background-color: rgb(250, 207, 207);
         width: 120%;
+    }
+    .utility-buttons{
+        margin: clamp(20px, 2vw,400px);
+        padding-top: 10px;
+        height: 100%;
+        width: 100%;
+        text-align: right;
     }
 }
 .delete-btn-container{
@@ -80,3 +90,9 @@ body{
 .btn-yes{
     width: 30%;
 }
+.information-div, .like-count{
+  font-family: "Poppins", sans-serif;
+}
+/* .name-container{
+    border: 1px solid red;
+} */

@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="css/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main_page.css">
     <link rel="stylesheet" href="css/like_btn.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>WHEEL DEAL</title>
 </head>
 <body>
@@ -34,7 +37,13 @@
                     ?>
                 </h1>
             </div>
+            
         </div>
+        <div class="utility-buttons">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="../includes/logout.php" class="link-underline link-underline-opacity-0" id="logout-btn">logout</a></li>
+                </ul>
+            </div>
     </div>
     <div class="main-page-container container">
         <div class="news-feed-container row">
@@ -76,7 +85,7 @@
         var acctid = "<?php echo htmlspecialchars(urlencode($acctid)); ?>";
         var form = document.getElementById("uploadForm");
         form.action = "includes/upload.php?username=" + username + "&acctid=" + acctid;
-    });
+        });
 </script>
 <script
   src="https://code.jquery.com/jquery-3.7.1.js"
